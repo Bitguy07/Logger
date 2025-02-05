@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nokora-regular {
+    font-family: "Nokora", serif;
+  }
+  
+  .nokora-bold {
+    font-family: "Nokora", serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.875rem /* 30px */;
+
+  }
+
+  .nokora-black {
+    font-family: "Nokora", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.875rem /* 30px */;
+    line-height: 2rem /* 36px */;
+
+
+  }
+
+  ion-icon {
+    font-size: 25px;
+  }
+
+  
+
+  ion-icon[name="people-sharp"],
+  ion-icon[name="person-circle"]{
+    font-size: 33px; /* Font size for these specific icons */
+  }
+
+  ion-icon[name="person-add-sharp"],
+  ion-icon[name="search"] {
+    font-size: 28px; /* Font size for these specific icons */
+  }
+  
+  /* Hide the scrollbar */
+.scrollable-element {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* For Chrome, Safari, and other WebKit browsers */
+.scrollable-element::-webkit-scrollbar {
+  display: none;
+}
+
+ion-icon[name="cash-outline"] {
+  font-size: 50px; /* Font size for these specific icons */
+}
+
+.small-text {
+  font-size: 0.5rem ;
+  line-height: 0.6rem ;
+}
+
+ul li::marker {
+  color: black; /* Changes the bullet color */
+}
+
+.nokora-bold-1 {
+  font-family: "Nokora", serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 3.23rem;
+  line-height:1;
+}
+
+.nokora-regular-1 {
+  font-family: "Nokora", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.6rem; /*24px*/
+  line-height: 2.2rem; /*32px*/
+}
+
+.text-glow {
+    text-shadow: 2px 3px 3px #81a489cc;
+}
+
+.button-border {
+    border-width: 1.5px;
+}
+
+.line-height {
+  line-height:2;
+}
