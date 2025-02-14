@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="h-screen w-screen flex flex-col">
       {/* Base name is nacessay to add for the github pages */}
-      <HashRouter basename='/Logger'>
+      <HashRouter >
         <Authwrapper />
       </HashRouter>
     </div>
