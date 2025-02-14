@@ -6,7 +6,8 @@ const App = () => {
 
   return (
     <div className="h-screen w-screen flex flex-col">
-      <BrowserRouter basename="/Logger">
+      {/* Base name is nacessay to add for the github pages */}
+      <BrowserRouter basename="/Logger"> 
         <Authwrapper />
       </BrowserRouter>
     </div>
