@@ -41,7 +41,7 @@ const Authwrapper = () => {
           }
         } catch (error) {
           setLoading(false);
-          setErrorStatus(error.Error);
+          setErrorStatus(error.Error || 'Network Error !');
           navigate('/login-page');
         }
       };
@@ -67,7 +67,7 @@ const Authwrapper = () => {
           }
         } catch (error) {
           setLoading(false);
-          setErrorStatus(error.Error)
+          setErrorStatus(error.Error || 'Network Error !')
         }
       }
 
@@ -84,7 +84,7 @@ const Authwrapper = () => {
           }else if(response.data.Error === 'Token Expired') {
             console.log('Please login again, Your session has expired.')
             setUser({name:'', isAuthenticated: false});
-            navigate('/');
+            // navigate('/');
           }else {
             return;
           }
