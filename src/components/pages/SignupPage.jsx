@@ -1,4 +1,5 @@
 import React, { useReducer, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../Authentication/AuthContext"; // Import from new file
 
 const initialState = {
@@ -124,23 +125,15 @@ const SignupPage = () => {
             />
             <span className="text-sm text-gray-700">
               I agree to the{" "}
-              <a
-                href="/terms-&-conditions"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
+              <Link to="/privacy-&-policy" className="text-blue-600 underline">
                 Terms & Conditions
-              </a>{" "}
+              </Link>
+              {" "}
               and{" "}
-              <a
-                href="/privacy-&-policy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
+              <Link to="/privacy-&-policy" className="text-blue-600 underline">
                 Privacy Policy
-              </a>
+              </Link>
+
               .
             </span>
           </label>
