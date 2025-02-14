@@ -78,7 +78,7 @@ const Authwrapper = () => {
     useEffect(() => {
       const verifyAuthToken = async () => {
         try {
-          const response = await axios.get(`${origin}`);
+          const response = await axios.get(`${origin}/`);
           if(response.data.Status === 'Success'){
             setUser({name: response.data.name, isAuthenticated: response.data.isAuthenticated});
           }else if(response.data.Error === 'Token Expired') {
