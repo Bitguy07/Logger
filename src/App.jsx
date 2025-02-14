@@ -6,7 +6,7 @@ const App = () => {
 
   return (
     <div className="h-svh  flex items-center justify-center w-screen">
-        <BrowserRouter>
+        <BrowserRouter basename="/Logger">
           <Authwrapper />
         </BrowserRouter>
     </div>
