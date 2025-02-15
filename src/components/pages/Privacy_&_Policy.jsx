@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
 
 const privacyPolicy = [
     {
@@ -109,12 +111,32 @@ const privacyPolicy = [
     },
     {
       id: 10,
+      heading: "Technical Errors & Payment Failures",
+      text: null,
+      list: [
+          {
+              subheading: null,
+              text: "If a payment fails due to technical reasons, users must contact Razorpay support for resolution."
+          },
+          {
+              subheading: null,
+              text: "We are not responsible for duplicate transactions, incorrect amounts, or any issues arising from the user’s end."
+          },
+          {
+              subheading: null,
+              text: "For further details on failed transactions and technical issues, please refer to our ",
+              link: "/cancellation-&-refund-policy"
+          }
+      ]
+    },
+    {
+      id: 11,
       heading: "Changes to This Policy",
       text: "We may update this Privacy Policy from time to time. Your continued use of the App signifies your acceptance of the updated Privacy Policy.",
       list: null
     },
     {
-      id: 11,
+      id: 12,
       heading: "Contact Us",
       text: "For questions about this Privacy Policy, contact us at 'logger4647@gmail.com'.",
       list: null
@@ -123,33 +145,38 @@ const privacyPolicy = [
   
 const PrivacyPolicy = () => {
     return (
-        <div className='w-full bg-[#C6ECCF] flext items-center line-height overflow-y-auto h-full  justify-center'>
+      <div className='w-full bg-[#C6ECCF] flext items-center line-height overflow-y-auto h-full  justify-center'>
           <div className='mb-10 mt-11 mx-5 sm:mx-40 md:mx-60 '>
-            <h1 className='sm:text-center font-bold text-left text-xl text-glow sm:text-3xl pb-2 sm:pb-10 border-b-2 border-black'>Privacy Policy</h1>
-            {privacyPolicy.map((section, index) => (
-            <div key={section.id} className="mb-8">
-              <p className={`font-bold text-xl ${index === 0 ? 'mt-10' : 'mt-7'}`}>
-                <span className='font-medium'>{section.id}</span>. {section.heading}
-              </p>
-              {section?.text && (
-                <p className="text-[#565656] mt-4 font-normal">{section.text}</p>
-              )}
-              {section.list && (
-                <ul className="text-[#565656] list-disc">
-                  {section.list.map((item, idx) => (
-                    <li key={idx} className="ml-7 mt-3">
-                      <span className="font-medium text-lg text-black">
-                        {item?.subheading}
-                      </span>{' '}
-                      {item.text}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
-          </div>
+        <h1 className='sm:text-center font-bold text-left text-xl text-glow sm:text-3xl pb-2 sm:pb-10 border-b-2 border-black'>Privacy Policy</h1>
+        {privacyPolicy.map((section, index) => (
+        <div key={section.id} className="mb-8">
+          <p className={`font-bold text-xl ${index === 0 ? 'mt-10' : 'mt-7'}`}>
+            <span className='font-medium'>{section.id}</span>. {section.heading}
+          </p>
+          {section?.text && (
+            <p className="text-[#565656] mt-4 font-normal">{section.text}</p>
+          )}
+          {section.list && (
+            <ul className="text-[#565656] list-disc">
+              {section.list.map((item, idx) => (
+                <li key={idx} className="ml-7 mt-3">
+                  <span className="font-medium text-lg text-black">
+                    {item?.subheading}
+                  </span>{' '}
+                  {item.text}  
+                  {item.link && (
+                    <Link to={item.link} className="text-blue-600 underline ml-1">
+                      here.
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
+      ))}  
+      </div>
+    </div>
       )
 }
 

@@ -125,7 +125,7 @@ const SignupPage = () => {
             />
             <span className="text-sm text-gray-700">
               I agree to the{" "}
-              <Link to="/privacy-&-policy" className="text-blue-600 underline">
+              <Link to="/terms-&-conditions" className="text-blue-600 underline">
                 Terms & Conditions
               </Link>
               {" "}
