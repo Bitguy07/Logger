@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import RenderRoutes from '../components/structure/RenderRoutes';
 import { AuthContext } from "./AuthContext"; 
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +52,7 @@ const Authwrapper = () => {
 
       perfomSignup();
 
-    }, [signupData])
+    }, [navigate, signupData])
 
     //Handle Login api calls
     useEffect(() => {
@@ -76,7 +76,7 @@ const Authwrapper = () => {
       }
 
       performLogin ();
-    }, [loginData]);
+    }, [loginData, navigate]);
 
     //Verify that the user is authenticated with the help of cookies
     useEffect(() => {
@@ -86,7 +86,7 @@ const Authwrapper = () => {
           if(response.data.Status === 'Success'){
             setUser({name: response.data.name, isAuthenticated: response.data.isAuthenticated});
           }else if(response.data.Error === 'Token Expired') {
-            console.log('Please login again, Your session has expired.')
+            console.log('Please login again, Your session has expired. Hurry up !');
             setUser({name:'', isAuthenticated: false});
             // navigate('/');
           }else {

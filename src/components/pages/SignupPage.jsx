@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Authentication/AuthContext"; // Import from new file
 
