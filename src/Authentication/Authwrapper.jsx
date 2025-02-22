@@ -9,7 +9,6 @@ axios.defaults.withCredentials = true;
 const origin =  window.location.hostname === "localhost"
                 ? import.meta.env.VITE_API_LOCAL
                 : import.meta.env.VITE_API_PROD;
-
 const Authwrapper = () => {
     const navigate = useNavigate();
     const [signupData, setSignupData] = useState(null);
@@ -52,7 +51,7 @@ const Authwrapper = () => {
 
       perfomSignup();
 
-    }, [navigate, signupData])
+    }, [signupData])
 
     //Handle Login api calls
     useEffect(() => {
@@ -76,7 +75,7 @@ const Authwrapper = () => {
       }
 
       performLogin ();
-    }, [loginData, navigate]);
+    }, [loginData]);
 
     //Verify that the user is authenticated with the help of cookies
     useEffect(() => {
