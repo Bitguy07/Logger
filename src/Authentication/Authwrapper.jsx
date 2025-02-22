@@ -2,10 +2,13 @@ import React, {useEffect, useState } from 'react';
 import RenderRoutes from '../components/structure/RenderRoutes';
 import { AuthContext } from "./AuthContext"; 
 import { useNavigate } from 'react-router-dom';
+import qrCode from '../QR_Tasks/qrCode';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const origin = import.meta.env.VITE_ORIGIN;
+const origin =  window.location.hostname === "localhost"
+                ? import.meta.env.VITE_API_LOCAL
+                : import.meta.env.VITE_API_PROD;
 
 const Authwrapper = () => {
     const navigate = useNavigate();
@@ -14,6 +17,7 @@ const Authwrapper = () => {
     const [errorStatus, setErrorStatus] = useState(null);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(null);
+    
 
     //To Show and Hide the Menu Panel for logout and other options
     const [isClicked, setIsClicked] = useState(false);
@@ -59,7 +63,7 @@ const Authwrapper = () => {
           const response= await axios.post(`${origin}/login-page`, loginData);
           setLoading(false);
           if(response.data.Status === 'Success') {
-            setUser({name: response.data.name, isAuthenticated: response.data.isAuthenticated})
+            setUser({name: response.data.name, username: response.data.username, isAuthenticated: response.data.isAuthenticated})
             navigate('/customer-page');
             setErrorStatus(null);
           } else {
@@ -121,8 +125,13 @@ const Authwrapper = () => {
       setLoginData({username, password});
     }
 
+    const qrCodeImage = qrCode(user); //Because it will returen a promise so we need to store it in a variable
+    const AuthDAta = {
+        qCodeImage: qrCodeImage
+    }
+
     return (
-      <AuthContext.Provider value={{user, errorStatus, logout: HandleLogout, Signup: handleSignup, Login: handleLogin, isClicked, MenuPannel, BlurDiv, loading}}>
+      <AuthContext.Provider value={{user, AuthDAta, errorStatus, logout: HandleLogout, Signup: handleSignup, Login: handleLogin, isClicked, MenuPannel, BlurDiv, loading}}>
         <RenderRoutes />
       </AuthContext.Provider>  
     );
