@@ -57,7 +57,7 @@ const DashBoard = () => {
             </div>
           </div>
 
-          <div onClick={() => navigate('/not-ready')} className='bg-[#EEC573] cursor-pointer flex items-center justify-between my-5 mx-3 p-4 rounded-xl shadow-md'>
+          <div onClick={() => navigate('/menu-setting-pannel')} className='bg-[#EEC573] cursor-pointer flex items-center justify-between my-5 mx-3 p-4 rounded-xl shadow-md'>
             <p className='text-[#6D624C] font-medium ml-1 text-xl'>Menu Management Setting</p>
             <div><img src={setting} alt="setting.svg" className='mr-2'/></div>
           </div>

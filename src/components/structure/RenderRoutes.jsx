@@ -1,11 +1,21 @@
 import React from 'react'
-import {Routes, Route, Link } from 'react-router-dom';
-import navigation_button from './Navigation';
+import {Routes, Route, useLocation} from 'react-router-dom';
 import { useAuth } from '../../Authentication/AuthContext';
-import TaskBar from '../pages/TaskBar';
+import { getNavigationButtons } from './Navigation';
+import { encryptOwnerData } from '../../utils/encryption';
 
 const RenderRoutes = () => {
   const {user, loading} = useAuth();
+
+  if (user && user.username && user.id) {
+    // Generate the encrypted link from user data.
+    const encodedLink = encryptOwnerData({ ownerId: user.id, email: user.username });
+    console.log('OwnersParamsEncryptedData:', encodeURIComponent(encodedLink));
+  }
+
+  // Get navigation buttons using the computed encodedLink.
+  const navigation_button = getNavigationButtons();
+  
   return (
     <div className="h-full w-full flex items-center justify-center">
 

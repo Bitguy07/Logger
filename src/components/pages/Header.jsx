@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = ( props ) => {
   return (
-    <div className={`bg-[#266E73] w-full flex justify-between items-center space-x-2 ${props.title.type === "input" ? `px-2 py-[9px]` : `py-[6px] px-2`} rounded-t-sm`}>
+    <div className={`bg-[#266E73] w-full flex justify-between items-center space-x-2 ${props.title.type === "input" ? `px-2 py-[8px]` : `py-[6px] px-2`} rounded-t-sm`}>
       <div className="flex items-center justify-between grow">
         {props.title.type === "input" ? 
           <input
