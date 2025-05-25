@@ -46,7 +46,7 @@ const OwnersWebPage = () => {
   // Initialize Plan state from session storage if available.
   const [Plan, setPlan] = useState(() => {
     const storedPlan = sessionStorage.getItem('Plan');
-    return storedPlan ? JSON.parse(storedPlan) : [];
+    return storedPlan ? JSON.parse(storedPlan) : null;
   });
 
 // New: Memoized MealSchedules derived from Plan.subscriptionPlans.
@@ -97,7 +97,6 @@ const OwnersWebPage = () => {
   useEffect(() => {
     // If there is no encrypted parameter or ownerData, do nothing.
     if (!encrypted) return;
-    if (!ownerData) return;
 
     const getSubscriptionPlanForUser = async () => {
       try {
@@ -374,6 +373,8 @@ const OwnersWebPage = () => {
   if (!ownerData) {
     return <div>Invalid owner data.</div>;
   }
+
+  if ( Plan === null ) return <h1>Loading...</h1>
 
   return (
     <div className='h-full w-full flex flex-col relative sm:max-w-3xl bg-[#eceac6]'>
