@@ -44,10 +44,8 @@ const OwnersWebPage = () => {
   console.log(ownerData);
 
   // Initialize Plan state from session storage if available.
-  const [Plan, setPlan] = useState(() => {
-    const storedPlan = sessionStorage.getItem('Plan');
-    return storedPlan ? JSON.parse(storedPlan) : null;
-  });
+const [Plan, setPlan]     = useState(null);
+const [loading, setLoading] = useState(true);
 
 // New: Memoized MealSchedules derived from Plan.subscriptionPlans.
   // If today's date lies within the Ramadan period (inclusive), show type_id: 2 plans.
@@ -94,25 +92,22 @@ const OwnersWebPage = () => {
   const labelFloats = useMemo(() => normalDropdownOpen || schedule !== '', [normalDropdownOpen, schedule]);
 
   //load the subscription menu plan in session storage on page load
-  useEffect(() => {
-    // If there is no encrypted parameter or ownerData, do nothing.
-    if (!encrypted) return;
-
-    const getSubscriptionPlanForUser = async () => {
-      try {
-        // console.log("this is encrypted part", decodedLink);
-        // Replace ':encrypted' with the actual encrypted parameter.
-        const response = await axios.get(`${origin}/owners-webpage/${safeEncrypted}`);
-        // Update state and session storage.
-        setPlan(response.data);
-        sessionStorage.setItem('Plan', JSON.stringify(response.data));
-      } catch (error) {
-        console.error('Error fetching subscription plans:', error);
-      }
-    };
-
-    getSubscriptionPlanForUser();
-  }, [encrypted, ownerData]);
+useEffect(() => {
+  if (!encrypted) return;
+  (async () => {
+    try {
+      const { data } = await axios.get(
+        `${origin}/owners-webpage/${safeEncrypted}`
+      );
+      setPlan(data);
+      sessionStorage.setItem('Plan', JSON.stringify(data));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  })();
+}, [encrypted]);
 
   useEffect(() => {
     if (days !== '' && schedule !== '') {
@@ -374,7 +369,7 @@ const OwnersWebPage = () => {
     return <div>Invalid owner data.</div>;
   }
 
-  if ( Plan === null ) return <h1>Loading...</h1>
+  if (loading) return <h1>Loading…</h1>;
 
   return (
     <div className='h-full w-full flex flex-col relative sm:max-w-3xl bg-[#eceac6]'>
